@@ -1,0 +1,19 @@
+{
+    "name": "iamjaime/credits",
+    "description": "Laravel Package for easily adding User Credits support",
+    "type": "laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jaime Bernal",
+            "email": "codehead@codelegends.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Iamjaime\\Credits\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
