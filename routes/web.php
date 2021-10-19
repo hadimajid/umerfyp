@@ -60,6 +60,8 @@ Route::patch('/admin-registration/{set}', 'AdminDashboardController@update')->na
 Route::get('/admin-add-kameeti', 'AdminDashboardController@addKameeti')->name('admin.addKameeti');
 Route::post('/admin-add-kameeti', 'AdminDashboardController@submitKameeti')->name('admin.addKameeti');
 Route::get('/admin-kameeti-list', 'AdminDashboardController@kameetiList')->name('admin.kameetiList');
+Route::get('/admin-kameeti-update/{id}', 'AdminDashboardController@updateKameeti')->name('admin.updateKameeti');
+Route::put('/admin-kameeti-update/{id}', 'AdminDashboardController@submitUpdateKameeti')->name('admin.updateKameeti');
 
 
 

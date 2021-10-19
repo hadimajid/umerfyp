@@ -18,6 +18,7 @@ class CreateUsersCreditsTable extends Migration
 
             //Foreign Key Referencing the id on the users table.
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('amount')->default(encrypt(0)); //credit amount
         });

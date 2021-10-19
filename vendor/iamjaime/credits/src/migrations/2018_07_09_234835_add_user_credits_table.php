@@ -20,7 +20,8 @@ class AddUserCreditsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->integer('amount')->default(0); //credit amount
+            $table->string('amount')->default(encrypt(0)); //credit amount
+
         });
     }
 

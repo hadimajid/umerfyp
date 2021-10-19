@@ -46,6 +46,7 @@
                                                 <th scope="col">Duration</th>
                                                 <th scope="col">Price</th>
                                                 <th scope="col">Total Amount</th>
+                                                <th scope="col">Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -56,6 +57,7 @@
                                                 <td>{{$kameeti->duration}}</td>
                                                 <td>{{$kameeti->price}}</td>
                                                 <td>{{$kameeti->amount}}</td>
+                                                <td><a href="{{route('admin.updateKameeti',$kameeti->id)}}"><i class="fa fa-pen text-sm mr-1"></i></a> <a href="javascript:void(0)" class="delete" data-id="{{$kameeti->id}}"><i class="fa fa-trash text-sm"></i></a></td>
                                             </tr>
                                                 @empty
                                                     <tr>
@@ -103,3 +105,28 @@
 
 @endsection
 
+@section('scripts')
+    <script>
+        $('.delete').on('click',function (e){
+            e.preventDefault();
+            let id = $(this).data('id');
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this data",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                    } else {
+                        swal("Your data is safe!");
+                    }
+                });
+
+
+
+
+        })
+    </script>
+@endsection

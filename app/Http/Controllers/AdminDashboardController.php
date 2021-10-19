@@ -7,6 +7,7 @@ use App\Kameeti;
 use App\Set;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use phpDocumentor\Reflection\Types\Array_;
 
 class AdminDashboardController extends Controller
@@ -157,5 +158,25 @@ class AdminDashboardController extends Controller
     public function kameetiList(){
         $kameetis=Kameeti::paginate(10);
         return view('admin.Dashboard.kameeti-list',compact('kameetis'));
+    }
+    public function updateKameeti($id){
+        $kameeti= Kameeti::findOrFail($id);
+
+        return view('admin.Dashboard.kameeti-update',compact('kameeti'));
+    }
+    public function submitUpdateKameeti(Request $request,$id){
+        $kameeti= Kameeti::findOrFail($id);
+
+        $validateData=$request->validate([
+            'name'=>['required',Rule::unique('kameetis', 'id')->ignore($kameeti->id),],
+            'duration'=>'required',
+            'price'=>'required',
+            'amount'=>'required',
+        ]);
+//        $data=array_merge($validateData,['admin_id'=>auth()->guard('admin')->user()->id]);
+//        $kameeti=new Kameeti($data);
+        $kameeti->update($validateData);
+        return redirect()->back()->with('success',"Kameeti updated successfully.");
+
     }
 }
