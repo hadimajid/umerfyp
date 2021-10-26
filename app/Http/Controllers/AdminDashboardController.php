@@ -179,4 +179,10 @@ class AdminDashboardController extends Controller
         return redirect()->back()->with('success',"Kameeti updated successfully.");
 
     }
+    public function deleteKameeti(Request $request,$id){
+        $kameeti= Kameeti::findOrFail($id);
+        $kameeti->delete();
+        return redirect()->back()->with('success',"Kameeti deleted successfully.");
+
+    }
 }

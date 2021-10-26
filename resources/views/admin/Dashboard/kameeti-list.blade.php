@@ -35,6 +35,14 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                        @if (\Session::has('success'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {!! \Session::get('success') !!}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @endif
                             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row">
 
                                     <div class="col-md-12">
@@ -102,7 +110,10 @@
         <!-- Control sidebar content goes here -->
     </aside>
     <!-- /.control-sidebar -->
-
+    <form action="" id="deleteKameetiForm" method="POST">
+    @csrf
+    @method("DELETE")
+    </form>
 @endsection
 
 @section('scripts')
@@ -110,6 +121,10 @@
         $('.delete').on('click',function (e){
             e.preventDefault();
             let id = $(this).data('id');
+            let deleteFormUrl="{{route('admin.deleteKameeti',[''])}}"+"/"+id;
+            console.log(deleteFormUrl);
+            let form=$('#deleteKameetiForm');
+            form.attr('action',deleteFormUrl);
             swal({
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover this data",
@@ -119,6 +134,7 @@
             })
                 .then((willDelete) => {
                     if (willDelete) {
+                        form.submit();
                     } else {
                         swal("Your data is safe!");
                     }

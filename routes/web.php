@@ -35,6 +35,10 @@ Route::post('/registration/{set}', 'FrontSetController@registration')->name('fro
 Route::post('/hopeefeed/{hopee}', 'FrontSetController@hopeefeedupdate')->name('frontset.feedupdate');
 Route::post('/registration/security/{set}', 'FrontSetController@security')->name('frontset.security');
 
+Route::get('/kameeti', 'UserDashboardController@kameeti')->name('user.kameeti');
+Route::get('/budget', 'UserDashboardController@budget')->name('user.budget');
+
+
 
 
 Route::get('/', 'FrontController@index')->name('front.index');
@@ -62,7 +66,7 @@ Route::post('/admin-add-kameeti', 'AdminDashboardController@submitKameeti')->nam
 Route::get('/admin-kameeti-list', 'AdminDashboardController@kameetiList')->name('admin.kameetiList');
 Route::get('/admin-kameeti-update/{id}', 'AdminDashboardController@updateKameeti')->name('admin.updateKameeti');
 Route::put('/admin-kameeti-update/{id}', 'AdminDashboardController@submitUpdateKameeti')->name('admin.updateKameeti');
-
+Route::delete('admin-kameeti-delete/{id}','AdminDashboardController@deleteKameeti')->name('admin.deleteKameeti');
 
 
 Auth::routes(['verify'=> true]);

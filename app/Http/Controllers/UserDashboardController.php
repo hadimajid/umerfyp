@@ -249,4 +249,11 @@ class UserDashboardController extends Controller
 
     }
 
+    public function kameeti(){
+        return view('Frontend.kameeti');
+    }
+    public function budget(){
+        return view('Frontend.budget');
+    }
+
 }

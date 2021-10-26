@@ -147,6 +147,13 @@
         div.footer a.Cbtn-danger:hover{
             background-color: #fd7676;
         }
+        label.error{
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            background: #ec5252;
+            color: white;
+            width: 100%;
+        }
     </style>
     @yield('head')
 
@@ -154,6 +161,7 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/jquery-ui.min.css')}}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" oncontextmenu="return false">
 
@@ -349,10 +357,102 @@
         </div>
     </footer>
 </div>
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Kameeti Calculator</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form action="" id="kameeti-calculator">
+
+                <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">
+                                Name Of Item
+                            </label>
+                            <input type="text" id="cal_name" name="name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">
+                                Price Of Item
+                            </label>
+                            <input type="number" id="cal_price" name="price" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">
+                                Duration (In Months)
+                            </label>
+                            <input type="number" id="cal_duration" name="duration" required>
+                        </div>
+                    </div>
+            </form>
+
+        </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="cal">Calculate</button>
+                </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+           <div class="row">
+               <div class="col-md-12 text-center">
+                   <p id="new_name"></p>
+                   <p id="new_required_time"></p>
+               </div>
+           </div>
+        </div>
+    </div>
+</div>
 @include('frontend.layout.footer')
+<script src="{{asset('js/jquery-ui.min.js')}}"></script>
 @if($errors->any())
     <script>alert('{{$errors->first()}}')</script>
 @endif
 @yield('footer')
+<script>
+    let cal_name='';
+    let cal_price=0;
+    let cal_duration=0;
+
+    $('#kameeti-calculator').validate({
+        rules:{
+          name: 'required',
+          price: 'required',
+          duration: 'required',
+        },
+    })
+    $('#cal').on('click',function (e) {
+        e.preventDefault();
+        if($('#kameeti-calculator').valid()){
+
+        cal_name=$('#cal_name').val();
+        cal_price=$('#cal_price').val();
+        cal_duration=$('#cal_duration').val();
+        let requiredAmount=cal_price/cal_duration;
+
+        $('#new_name').text('For Item '+cal_name);
+        $('#new_required_time').text('You have to save RS '+requiredAmount +' for '+cal_duration+" Months");
+            $('#kameeti-calculator').trigger("reset");
+        $('#exampleModalLong').modal('hide')
+
+        $('.bd-example-modal-lg').modal('show')
+        }
+
+    })
+</script>
+@yield('scripts')
 </body>
 </html>
