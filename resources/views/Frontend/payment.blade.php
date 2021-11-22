@@ -1,4 +1,4 @@
-@extends('frontend.layout.app')
+@extends('Frontend.layout.app')
 
 @section('title','Security Payment')
 
