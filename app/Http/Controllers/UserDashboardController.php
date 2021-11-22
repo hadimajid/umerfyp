@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Feedback;
 use App\Hopeewinner;
 use App\Http\Resources\Feedback as FeedbackResource;
+use App\Kameeti;
 use App\Set;
 use App\Tid;
 use App\Withdraw;
@@ -12,6 +13,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Response;
 
 class UserDashboardController extends Controller
 {
@@ -251,6 +253,61 @@ class UserDashboardController extends Controller
 
     public function kameeti(){
         return view('Frontend.kameeti');
+    }
+    public function getKameetiList(Request $request){
+        $page=0;
+        $limit=12;
+        if ($request->length){
+            $limit=$request->length;
+        }
+        if($request->page){
+            $page=($request->page-1)*$limit;
+        }
+        $kameetis=Kameeti::offset($page)->limit($limit)->get();
+        $total=Kameeti::all()->count();
+
+        return Response::json(['view'=>view('Frontend.kameeti-card',compact('kameetis'))->render(),'total'=>$total,'length'=>$limit]);
+    }
+    public function getRegisterKameeti(Request $request,$kameeti_id){
+        $kameeti=Kameeti::findOrFail($kameeti_id);
+        return view('Frontend.kameeti-register',compact('kameeti'));
+    }
+    public function registerKameeti(Request $request,$kameeti_id){
+        $kameeti=Kameeti::findOrFail($kameeti_id);
+        $validateDate=$request->validate([
+            'cnic_front'=>'required|mimes:jpeg,png,jpg',
+            'cnic_back'=>'required|mimes:jpeg,png,jpg',
+            'signature'=>'required|mimes:jpeg,png,jpg',
+        ]);
+
+        $user=Auth::guard('web')->user();
+
+        if($user && $user->kameetis->find($kameeti_id)){
+            return redirect()->back()->with('danger',"Already applied to register on this kameeti.");
+
+        }
+        if($request->hasFile('cnic_front')){
+            $cnicFront=$request->file('cnic_front');
+            $cnicFrontName=$user->username.date('dmY')."cnic_front.".$cnicFront->getClientOriginalExtension();
+            $cnicFront->move(public_path('kameeti'),$cnicFrontName);
+        }
+        if($request->hasFile('cnic_back')){
+            $cnicBack=$request->file('cnic_back');
+            $cnicBackName=$user->username.date('dmY')."cnic_back.".$cnicBack->getClientOriginalExtension();
+            $cnicBack->move(public_path('kameeti'),$cnicBackName);
+        }
+        if($request->hasFile('signature')){
+            $signature=$request->file('signature');
+            $signatureName=$user->username.date('dmY')."signature.".$signature->getClientOriginalExtension();
+            $signature->move(public_path('kameeti'),$signatureName);
+        }
+        $kameeti->users()->attach($user->id,[
+            'cnic_front'=>asset("kameeti/".$cnicFrontName),
+            'cnic_back'=>asset("kameeti/".$cnicBackName),
+            'signature'=>asset("kameeti/".$signatureName),
+        ]);
+            return redirect()->back()->with('success',"Kameeti will get register after verification.");
+
     }
     public function budget(){
         return view('Frontend.budget');

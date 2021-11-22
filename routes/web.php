@@ -36,6 +36,9 @@ Route::post('/hopeefeed/{hopee}', 'FrontSetController@hopeefeedupdate')->name('f
 Route::post('/registration/security/{set}', 'FrontSetController@security')->name('frontset.security');
 
 Route::get('/kameeti', 'UserDashboardController@kameeti')->name('user.kameeti');
+Route::get('/get-kameeti-list', 'UserDashboardController@getKameetiList')->name('user.kameetiList');
+Route::get('/get-kameeti-register/{kameeti_id}', 'UserDashboardController@getRegisterKameeti')->name('user.getRegisterKameeti');
+Route::post('/kameeti-register/{kameeti_id}', 'UserDashboardController@registerKameeti')->name('user.registerKameeti');
 Route::get('/budget', 'UserDashboardController@budget')->name('user.budget');
 
 

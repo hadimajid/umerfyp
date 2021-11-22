@@ -148,6 +148,8 @@
             background-color: #fd7676;
         }
         label.error{
+            padding: 0.5rem;
+            border-radius: 5px;
             margin-top: 1rem;
             margin-bottom: 1rem;
             background: #ec5252;
@@ -418,6 +420,7 @@
 </div>
 @include('frontend.layout.footer')
 <script src="{{asset('js/jquery-ui.min.js')}}"></script>
+<script src="{{asset('js/pagination.min.js')}}"></script>
 @if($errors->any())
     <script>alert('{{$errors->first()}}')</script>
 @endif

@@ -1200,3 +1200,6 @@ li {
     background-color: #7450fe;
     color: #fff;
 }
+.display-warning li {
+    list-style: item !important;
+}

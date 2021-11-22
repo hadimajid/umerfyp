@@ -57,5 +57,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new \App\Notifications\VerifyEmailQueued);
     }
+    public function kameetis(){
+       return $this->belongsToMany(Kameeti::class)->withPivot(['cnic_front','cnic_back','signature','registered']);
+    }
 
 }

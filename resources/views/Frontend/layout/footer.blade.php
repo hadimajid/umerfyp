@@ -15,7 +15,7 @@
 
 <script>
     $.validator.addMethod('ge', function(value, element, param) {
-        return this.optional(element) || value >= $(param).val();
+        return this.optional(element) || parseInt(value) >= parseInt($(param).val());
     }, 'To value must be greater than or equal to From');
     $.validator.addMethod('lessThanSalary', function(value, element, param) {
         let grocery_from=parseInt($('#grocery_from').val()) || 0;
