@@ -1,4 +1,4 @@
-@extends('Frontend.layout.app')
+@extends('frontend.layout.app')
 
 @section('title','Hopee-We Give Hopee')
 @section('description','Select a set, Read the instructions, Make Investment, Be hopeful to win hopee of at least 4000%. Think we are scam check our latest hopees and feedbacks.')

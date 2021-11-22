@@ -1,6 +1,6 @@
 @extends('admin.dashboard.layout.app')
 
-@section('title','Admin Dashboard')
+@section('title','Admin dashboard')
 
 @section('content')
 
@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item text-primary">Adding New Set</li>
+                                <li class="breadcrumb-item text-primary">Editing Set</li>
 {{--                                <li class="breadcrumb-item active">DataTables</li>--}}
                             </ol>
                         </div>
@@ -31,31 +31,32 @@
 
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Adding New Set</h3>
+                        <h3 class="card-title">Editing Set</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('admindash.store')}}" method="post">
+                    <form role="form" action="{{route('admindash.patch',$set->id)}}" method="post">
+                        @method('PATCH')
                         @csrf
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="perday">Per Day</label>
-                                        <input type="number" class="form-control" id="perday" name="perday" placeholder="Per Day Amount">
+                                        <input type="number" class="form-control" id="perday" name="perday" placeholder="Per Day Amount" value="{{$set->perday}}">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="totaldays">Total Days</label>
-                                        <input type="number" class="form-control" id="totaldays" name="totaldays" placeholder="Total Days">
+                                        <input type="number" class="form-control" id="totaldays" name="totaldays" placeholder="Total Days" value="{{$set->totalday}}">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="totalusers">Total Users</label>
-                                <input type="number" class="form-control" id="totalusers" name="totalusers" placeholder="Total Users">
+                                <input type="number" class="form-control" id="totalusers" name="totalusers" placeholder="Total Users" value="{{$set->totalusers}}">
                             </div>
                         <!-- /.card-body -->
 

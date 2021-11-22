@@ -1,6 +1,6 @@
-@extends('dashboard.layout.app')
+@extends('admin.dashboard.layout.app')
 
-@section('title','Dashboard')
+@section('title','Admin dashboard')
 
 @section('content')
 
@@ -13,12 +13,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>DataTables</h1>
+                            <h1>Active Sets</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">DataTables</li>
+                                <li class="breadcrumb-item"><a href="{{route('admindash.create')}}">Add New Set</a></li>
+{{--                                <li class="breadcrumb-item active">DataTables</li>--}}
                             </ol>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">DataTable with default features</h3>
+                                <h3 class="card-title">All The Registered Active Sets</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -57,6 +57,7 @@
                                                 <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example1"></label>
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
@@ -74,6 +75,12 @@
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 219px;">
                                                         Total Users
+                                                    </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 219px;">
+                                                        Current Users
+                                                    </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 219px;">
+                                                        Days passed
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 219px;">
                                                         Total Amount
@@ -99,9 +106,6 @@
                                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 99px;">
                                                         3rd Hopee
                                                     </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 99px;">
-                                                        Add receipts
-                                                    </th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -113,6 +117,8 @@
                                                             <td>{{$set->perday}}</td>
                                                             <td>{{$set->totalday}}</td>
                                                             <td>{{$set->totalusers}}</td>
+                                                            <td>{{$set->currentusers}}</td>
+                                                            <td>{{$set->dayspassed}}</td>
                                                             <td>{{$set->totalamount}}</td>
                                                             <td>{{$set->mycommission}}</td>
                                                             <td>{{$set->jazzcommission}}</td>
@@ -121,7 +127,6 @@
                                                             <td>{{$set->firsthopee}}</td>
                                                             <td>{{$set->secondhopee}}</td>
                                                             <td>{{$set->thirdhopee}}</td>
-                                                            <td><a href="{{route('admin.image',$set->id)}}">Image Upload</a></td>
                                                         </tr>
                                                     @else
                                                         <tr role="row" class="even">
@@ -129,6 +134,8 @@
                                                             <td>{{$set->perday}}</td>
                                                             <td>{{$set->totalday}}</td>
                                                             <td>{{$set->totalusers}}</td>
+                                                            <td>{{$set->currentusers}}</td>
+                                                            <td>{{$set->dayspassed}}</td>
                                                             <td>{{$set->totalamount}}</td>
                                                             <td>{{$set->mycommission}}</td>
                                                             <td>{{$set->jazzcommission}}</td>
@@ -137,14 +144,12 @@
                                                             <td>{{$set->firsthopee}}</td>
                                                             <td>{{$set->secondhopee}}</td>
                                                             <td>{{$set->thirdhopee}}</td>
-                                                            <td><a href="{{route('admin.image',$set->id)}}">Image Upload</a></td>
                                                         </tr>
                                                     @endif
 
                                                 @endforeach
                                                 </tbody>
-                                            </table>
-                                        </div>
+                                            </table>                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-5">

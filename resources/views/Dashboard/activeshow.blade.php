@@ -1,6 +1,6 @@
 @extends('dashboard.layout.app')
 
-@section('title','Dashboard')
+@section('title','dashboard')
 
 @section('content')
 

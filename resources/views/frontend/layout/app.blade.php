@@ -159,7 +159,7 @@
     </style>
     @yield('head')
 
-    @include('Frontend.layout.head')
+    @include('frontend.layout.head')
 
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -418,7 +418,7 @@
         </div>
     </div>
 </div>
-@include('Frontend.layout.footer')
+@include('frontend.layout.footer')
 <script src="{{asset('js/jquery-ui.min.js')}}"></script>
 <script src="{{asset('js/pagination.min.js')}}"></script>
 @if($errors->any())

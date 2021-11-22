@@ -1,6 +1,6 @@
 @extends('admin.dashboard.layout.app')
 
-@section('title','Admin Dashboard')
+@section('title','Admin dashboard')
 
 @section('content')
     <script>                                                {{$serial = 1}}

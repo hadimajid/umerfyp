@@ -252,7 +252,7 @@ class UserDashboardController extends Controller
     }
 
     public function kameeti(){
-        return view('Frontend.kameeti');
+        return view('frontend.kameeti');
     }
     public function getKameetiList(Request $request){
         $page=0;
@@ -266,11 +266,11 @@ class UserDashboardController extends Controller
         $kameetis=Kameeti::offset($page)->limit($limit)->get();
         $total=Kameeti::all()->count();
 
-        return Response::json(['view'=>view('Frontend.kameeti-card',compact('kameetis'))->render(),'total'=>$total,'length'=>$limit]);
+        return Response::json(['view'=>view('frontend.kameeti-card',compact('kameetis'))->render(),'total'=>$total,'length'=>$limit]);
     }
     public function getRegisterKameeti(Request $request,$kameeti_id){
         $kameeti=Kameeti::findOrFail($kameeti_id);
-        return view('Frontend.kameeti-register',compact('kameeti'));
+        return view('frontend.kameeti-register',compact('kameeti'));
     }
     public function registerKameeti(Request $request,$kameeti_id){
         $kameeti=Kameeti::findOrFail($kameeti_id);
@@ -310,7 +310,7 @@ class UserDashboardController extends Controller
 
     }
     public function budget(){
-        return view('Frontend.budget');
+        return view('frontend.budget');
     }
 
 }

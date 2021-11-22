@@ -35,7 +35,7 @@ class FrontSetController extends Controller
 //
 //        if ($security<(int)round($set->totalamountperperson / 100 * 20 + 50,-2))
 //            return redirect()->back()->withErrors(['Too low security', 'The Message']);;
-//        return view('Frontend.payment',compact('set','security'));
+//        return view('frontend.payment',compact('set','security'));
 //
 //    }
     public function security($set,Request $request){

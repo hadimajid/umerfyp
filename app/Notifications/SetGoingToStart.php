@@ -42,7 +42,7 @@ class SetGoingToStart extends Notification
     {
         return (new MailMessage)
                     ->line('The Set You registered Has Completed all requirements. It is starting by tommorow. We encourage you to visit your dashboard')
-                    ->action('My Dashboard', url('/my-dashboard/active'))
+                    ->action('My dashboard', url('/my-dashboard/active'))
                     ->line('Thank you for using our services!');
     }
 

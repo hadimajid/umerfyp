@@ -140,7 +140,7 @@ class AdminDashboardController extends Controller
         $set->save();
     }
     public function addKameeti(){
-        return view('admin.Dashboard.kameeti-add');
+        return view('admin.dashboard.kameeti-add');
     }
     public function submitKameeti(Request $request){
         $validateData=$request->validate([
@@ -157,12 +157,12 @@ class AdminDashboardController extends Controller
     }
     public function kameetiList(){
         $kameetis=Kameeti::paginate(10);
-        return view('admin.Dashboard.kameeti-list',compact('kameetis'));
+        return view('admin.dashboard.kameeti-list',compact('kameetis'));
     }
     public function updateKameeti($id){
         $kameeti= Kameeti::findOrFail($id);
 
-        return view('admin.Dashboard.kameeti-update',compact('kameeti'));
+        return view('admin.dashboard.kameeti-update',compact('kameeti'));
     }
     public function submitUpdateKameeti(Request $request,$id){
         $kameeti= Kameeti::findOrFail($id);
