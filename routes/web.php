@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/optimize', 'FrontController@optimize');
+
 Route::get('/my-dashboard/credit/deposit', 'UserDashboardController@deposit')->name('userdash.creditdep');
 Route::post('/my-dashboard/credit/deposit', 'UserDashboardController@depositamount')->name('userdash.creditdepamount');
 Route::post('/my-dashboard/credit/deposit/success/{amount}', 'UserDashboardController@depositamountsuccess')->name('userdash.creditdepositedsuccess');
