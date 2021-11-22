@@ -24,12 +24,12 @@
                         <h2><small>Your Remaining Credit: @auth{{Auth::user()->credit?decrypt(Auth::user()->credit->amount):0 }} Pkr <a href="{{route('userdash.creditdepamount')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>@else {{0}}Pkr <a href="{{route('userdash.creditdepamount')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i></a> @endauth</small></h2>
                         <h2><small>Think we are scam? Check our:</small></h2>
                         @if(auth()->guard('web')->check())
-                        <a href="{{route('user.kameeti')}}" class="btn fancy-btn fancy-active">Kameeti</a>
-                        <a href="{{route('front.latest')}}" class="btn fancy-btn fancy-active">Loan Management</a>
-                        <a href="{{route('user.budget')}}" class="btn fancy-btn fancy-active">Budget Calculator</a>
+                        <a href="{{route('user.kameeti')}}" class="btn fancy-btn fancy-active" style="font-size: 12px">Kameeti</a>
+                        <a href="{{route('front.latest')}}" class="btn fancy-btn fancy-active" style="font-size: 12px">Loan Management</a>
+                        <a href="{{route('user.budget')}}" class="btn fancy-btn fancy-active" style="font-size: 12px">Budget Calculator</a>
                         @endif
-                        <a href="{{route('front.latest')}}" class="btn fancy-btn fancy-active">Latest Hopees</a>
-                        <a href="{{route('front.feedbacks')}}" class="btn fancy-btn">Our Feedback</a>
+                        <a href="{{route('front.latest')}}" class="btn fancy-btn fancy-active" style="font-size: 12px">Latest Hopees</a>
+                        <a href="{{route('front.feedbacks')}}" class="btn fancy-btn" style="font-size: 12px">Our Feedback</a>
                     </div>
                 </div>
             </div>
