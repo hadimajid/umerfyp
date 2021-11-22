@@ -66,10 +66,10 @@ Route::post('/admin-create', 'AdminDashboardController@store')->name('admindash.
 Route::get('/admin-registration/{set}/edit', 'AdminDashboardController@edit')->name('admindash.edit');
 Route::patch('/admin-registration/{set}', 'AdminDashboardController@update')->name('admindash.patch');
 Route::get('/admin-add-kameeti', 'AdminDashboardController@addKameeti')->name('admin.addKameeti');
-Route::post('/admin-add-kameeti', 'AdminDashboardController@submitKameeti')->name('admin.addKameeti');
+Route::post('/admin-add-kameeti', 'AdminDashboardController@submitKameeti');
 Route::get('/admin-kameeti-list', 'AdminDashboardController@kameetiList')->name('admin.kameetiList');
 Route::get('/admin-kameeti-update/{id}', 'AdminDashboardController@updateKameeti')->name('admin.updateKameeti');
-Route::put('/admin-kameeti-update/{id}', 'AdminDashboardController@submitUpdateKameeti')->name('admin.updateKameeti');
+Route::put('/admin-kameeti-update/{id}', 'AdminDashboardController@submitUpdateKameeti');
 Route::delete('admin-kameeti-delete/{id}','AdminDashboardController@deleteKameeti')->name('admin.deleteKameeti');
 
 
