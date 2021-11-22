@@ -27,11 +27,11 @@ class FrontController extends Controller
     {
 //        $data =
         $sets = Set::all()->where('state','registration')->chunk(3)->first();
-        return view('frontend.index',compact('sets'));
+        return view('Frontend.index',compact('sets'));
     }
     public function contact()
     {
-        return view('frontend.contact');
+        return view('Frontend.contact');
     }
     public function optimize()
     {
@@ -40,17 +40,17 @@ class FrontController extends Controller
     }
     public function about()
     {
-        return view('frontend.about');
+        return view('Frontend.about');
     }
     public function latest()
     {
         $sets = Set::where('state','history')->get();
 
-        return view('frontend.latest',compact('sets'));
+        return view('Frontend.latest',compact('sets'));
     }
     public function feedbacks()
     {
         $feeds = Feedback::all()->where('set_id',null);
-        return view('frontend.feedback',compact('feeds'));
+        return view('Frontend.feedback',compact('feeds'));
     }
 }
